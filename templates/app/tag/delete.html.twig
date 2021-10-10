@@ -1,0 +1,43 @@
+{% extends '@layout/adminlte.html.twig' %}
+
+{% block title %}
+    Excluir Tag {{ parent() }}
+{% endblock %}
+
+{% block page_header %}
+    Excluir Tag {{ form.getObject().name }}
+{% endblock %}
+
+{% block content %}
+
+    {% include '@app/tag/_form-elements.html.twig' %}
+
+    {% set submit = form.get('submit') %}
+    {% do submit.setAttribute('class','btn btn-danger').setLabel('Confirmar Exclusão') %}
+
+    {% do form.setAttribute('action',url('tag.delete', {id: form.getObject().id })) %}
+    {% do form.prepare() %}
+
+        <div class="box box-danger">
+
+                <fieldset disabled>
+                    <div class="box-body">
+
+                        {% include '@app/tag/_form-body.html.twig' %}
+
+                    </div>
+                </fieldset>
+
+            {{ form().openTag(form) | raw}}
+
+            {{ formHidden(form.get('_method')) }}
+
+            <div class="box-footer">
+                {{ formRow(submit) }}
+            </div>
+
+            {{ form().closeTag() | raw}}
+
+        </div>
+
+{% endblock %}

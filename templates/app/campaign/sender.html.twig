@@ -1,0 +1,51 @@
+{% extends '@layout/adminlte.html.twig' %}
+
+{% block title %}
+    Envio de Campanha {{ parent() }}
+{% endblock %}
+
+{% block page_header %}
+    Envio de Campanha {{ form.getObject().name }}
+{% endblock %}
+
+{% block content %}
+
+    {% include '@app/campaign/_form-elements.html.twig' %}
+
+    {% set submit = form.get('submit') %}
+    {% do submit.setAttribute('class','btn btn-primary').setLabel('Enviar') %}
+
+    {% do form.setAttribute('action',url('campaign.sender', {id: form.getObject().id })) %}
+    {% do form.prepare() %}
+
+    <div class="box box-success">
+
+        <fieldset disabled>
+            <div class="box-body">
+
+                {% include '@app/campaign/_form-body.html.twig' %}
+
+            </div>
+        </fieldset>
+
+        {{ form().openTag(form) | raw}}
+
+        <div class="box-footer">
+            {{ formRow(submit) }}
+        </div>
+
+        {{ form().closeTag() | raw}}
+
+    </div>
+
+{% endblock %}
+
+{% block javascript %}
+    <script>
+        tinymce.init({
+            selector:'textarea',
+            readonly: 1,
+            height: 400
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,6 @@
+{% if message is defined and message is not null %}
+    <div class="alert alert-{{ messageType is defined ? messageType : 'success' }} alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+        <p><i class="icon fa fa-check"></i>{{ message }}</p>
+    </div>
+{% endif %}

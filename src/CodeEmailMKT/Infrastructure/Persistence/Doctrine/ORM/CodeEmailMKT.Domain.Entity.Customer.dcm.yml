@@ -1,0 +1,22 @@
+#CodeEmailMKT.Domain.Entity.Customer.dcm.yml
+CodeEmailMKT\Domain\Entity\Customer:
+  type: entity
+  repositoryClass: CodeEmailMKT\Infrastructure\Persistence\Doctrine\Repository\CustomerRepository
+  table: customers
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    name:
+      type: string
+      length: 200
+      nullable: true
+    email:
+      type: string
+      length: 200
+  manyToMany:
+      tags:
+        targetEntity: CodeEmailMKT\Domain\Entity\Tag
+        mappedBy: customers

@@ -1,0 +1,23 @@
+#CodeEmailMKT.Domain.Entity.User.dcm.yml
+CodeEmailMKT\Domain\Entity\User:
+  type: entity
+  #repositoryClass: CodeEmailMKT\Infrastructure\Persistence\Doctrine\Repository\CustomerRepository
+  table: users
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    name:
+      type: string
+      length: 200
+    email:
+      type: string
+      unique: true
+      length: 200
+    password:
+      type: string
+      length: 60
+  lifecycleCallbacks:
+    prePersist: [generatePassword]

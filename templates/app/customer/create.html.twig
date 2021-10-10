@@ -1,0 +1,36 @@
+{% extends '@layout/adminlte.html.twig' %}
+
+{% block title %}
+    Criar Contato {{ parent() }}
+{% endblock %}
+
+{% block page_header %}
+    Criar Contato
+{% endblock %}
+
+{% block content %}
+
+    {% include '@app/customer/_form-elements.html.twig' %}
+
+    {% set submit = form.get('submit') %}
+    {% do submit.setAttribute('class','btn btn-primary').setLabel('Salvar') %}
+
+    {% do form.setAttribute('action',url('customer.create')) %}
+    {% do form.prepare() %}
+        <div class="box">
+
+                {{ form().openTag(form) | raw}}
+
+                    <div class="box-body">
+                        {% include '@app/customer/_form-body.html.twig' %}
+                    </div>
+
+                    <div class="box-footer">
+                        {{ formRow(submit) }}
+                    </div>
+
+                {{ form().closeTag() | raw}}
+
+        </div>
+
+{% endblock %}

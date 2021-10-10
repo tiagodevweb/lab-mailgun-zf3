@@ -1,0 +1,41 @@
+{% extends '@layout/adminlte.html.twig' %}
+
+{% block title %}
+    Editar Tag {{ parent() }}
+{% endblock %}
+
+{% block page_header %}
+    Editar Tag {{ form.getObject().name }}
+{% endblock %}
+
+{% block content %}
+
+    {% include '@app/tag/_form-elements.html.twig' %}
+
+    {% set submit = form.get('submit') %}
+    {% do submit.setAttribute('class','btn btn-primary').setLabel('Atualizar') %}
+
+    {% do form.setAttribute('action',url('tag.update', {id: form.getObject().id })) %}
+    {% do form.prepare() %}
+
+        <div class="box">
+
+            {{ form().openTag(form) | raw}}
+
+            {{ formHidden(form.get('_method')) }}
+
+            <div class="box-body">
+
+                {% include '@app/tag/_form-body.html.twig' %}
+
+            </div>
+
+            <div class="box-footer">
+                {{ formRow(submit) }}
+            </div>
+
+            {{ form().closeTag() | raw}}
+
+        </div>
+
+{% endblock %}

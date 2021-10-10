@@ -1,0 +1,18 @@
+{% extends '@layout/adminlte.html.twig' %}
+
+{% block title %}Teste{% endblock %}
+
+{% block content %}
+   {{data}}<br>
+
+   {% for customer in customers %}
+   		{{ customer.name }}<br>
+   {% endfor %}
+
+   <br>
+
+   {% for cliente in clientes %}
+   		{{ cliente.nome }} | {{ cliente.endereco.cep }} {{ cliente.endereco.logradouro }} {{ cliente.endereco.cidade }}/{{ cliente.endereco.estado }}<br>
+   {% endfor %}
+
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends '@layout/adminlte.html.twig' %}
+
+{% block title %}
+    Listagem de Contatos {{ parent() }}
+{% endblock %}
+
+{% block page_header %}
+    Listagem de Contatos
+{% endblock %}
+
+{% block content %}
+
+        <div class="box">
+
+            <div class="box box-header">
+                <a href="{{ url('customer.create') }}" class="btn btn-app">
+                    <i class="fa fa-plus-circle"></i> Criar
+                </a>
+            </div>
+
+            <div class="box-body">
+
+                <table class="table table-bordered">
+
+                    <tbody>
+                        <tr>
+                            <th style="width: 10px;">ID</th>
+                            <th>Nome</th>
+                            <th>E-mail</th>
+                            <th>Ações</th>
+                        </tr>
+                        {% for customer in customers %}
+                        <tr>
+                            <td>{{ customer.id }}</td>
+                            <td>{{ customer.name }}</td>
+                            <td>{{ customer.email }}</td>
+                            <td>
+                                <a href="{{ url('customer.update', {id: customer.id}) }}">Editar</a>
+                                <a href="{{ url('customer.delete', {id: customer.id}) }}">Excluir</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+{% endblock %}
